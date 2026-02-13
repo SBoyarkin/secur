@@ -1,8 +1,8 @@
 """
-URL configuration for backend project.
+URL configuration for aiso project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
+    https://docs.djangoproject.com/en/5.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -15,8 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+
+from main.views import OrganizationViewSet, CertificateViewSet, UserViewSet, PreviewViewSet, TestView
+
+router = routers.DefaultRouter()
+router.register('service/available/organizations', OrganizationViewSet)
+router.register('certificates', CertificateViewSet)
+router.register('users', UserViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('preview/', PreviewViewSet.as_view(), name='preview'),
+    path(r'auth/', include('djoser.urls')),
+    path(r'auth/', include('djoser.urls.authtoken')),
+    path('test/<int:id>/', TestView.as_view(), name='test'),
+] + router.urls
