@@ -1,27 +1,17 @@
 import {useSelector, useDispatch} from "react-redux";
 import { decrement, increment } from '../../features/counterSlice.js'
+import S from './MainPage.module.css'
+import {Menu} from "../../components/Menu/Menu.jsx";
+import {Content} from "../Content/Content.jsx";
 export const MainPage = () => {
-   const count = useSelector((state) => state.counter.value)
-    const dispatch = useDispatch()
     return(
         <>
-            <div>
-              <div>
-                <button
-                  aria-label="Increment value"
-                  onClick={() => dispatch(increment())}
-                >
-                  Increment
-                </button>
-                <span>{count}</span>
-                <button
-                  aria-label="Decrement value"
-                  onClick={() => dispatch(decrement())}
-                >
-                  Decrement
-                </button>
-              </div>
-            </div>
+            <main className={S.flexAlign}>
+                <Menu />
+                <Content/>
+
+            </main>
+
         </>
     )
 

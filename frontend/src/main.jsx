@@ -11,6 +11,6 @@ createRoot(document.getElementById('root')).render(
       {/* eslint-disable-next-line no-undef */}
           <Provider store={store}>
                 <RouterProvider router={router}/>
-        </Provider>,
+        </Provider>
   </StrictMode>
 )
