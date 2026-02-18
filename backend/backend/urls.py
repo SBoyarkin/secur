@@ -29,7 +29,7 @@ router.register('users', UserViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('preview/', PreviewViewSet.as_view(), name='preview'),
-    path(r'auth/', include('djoser.urls')),
-    path(r'auth/', include('djoser.urls.authtoken')),
+    path(r'api-v1/auth/', include('djoser.urls')),
+    path(r'api-v1/auth/', include('djoser.urls.authtoken')),
     path('test/<int:id>/', TestView.as_view(), name='test'),
 ] + router.urls

@@ -1,0 +1,12 @@
+.UserItem {
+    display: flex;
+    margin: 3px;
+    box-sizing: border-box;
+    border: #c3c3c3 solid 1px;
+    border-radius: 3px;
+    user-select: none;
+}
+
+.UserItem:hover {
+    background-color: #c3c3c3;
+}

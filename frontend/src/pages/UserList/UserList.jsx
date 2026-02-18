@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {authAxiosRequest} from "../../castomAxiosRequest.js";
+import {UserListItem} from "./UserListItem.jsx";
 
 export const UserList = () => {
     const [users, usersHandler] = useState([])
@@ -12,7 +13,10 @@ export const UserList = () => {
 
     return(
         <>
-            {users.map(item => <div key={item.id}> {item.id} - {item.email} </div>)}
+            <div>
+                {users.map(item => <UserListItem props={item}/> )}
+            </div>
+
         </>
     )
 

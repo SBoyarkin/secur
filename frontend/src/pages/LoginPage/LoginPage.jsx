@@ -1,5 +1,4 @@
 import S from './LoginPage.module.css'
-import {authAxiosRequest} from "../../castomAxiosRequest.js";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router";
@@ -7,7 +6,6 @@ import {setToken} from "../../features/tokenSlice.js";
 export const LoginPage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     const Login = (e) => {
         e.preventDefault()
         const formData = new FormData(e.target);
@@ -19,11 +17,7 @@ export const LoginPage = () => {
                     console.log(response.data.auth_token);
                     dispatch(setToken(response.data.auth_token));
                     navigate('/', { replace: true });
-                }} )
-
-
-
-    }
+                }})}
     return(
         <>
             <div className={S.bg}>
@@ -42,8 +36,6 @@ export const LoginPage = () => {
                         <button  type={"submit"}>ВОЙТИ</button>
                     </form>
                 </div>
-
-                <div></div>
             </div>
 
         </>
