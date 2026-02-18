@@ -1,10 +1,12 @@
-import {Outlet} from "react-router";
+import { Outlet } from "react-router";
+import S from './Content.module.css';
 
 export const Content = () => {
-    return(
-        <>
-        <Outlet />
-        </>
-    )
-
-}
+    return (
+        <main className={S.content}>
+            <div className={S.contentContainer}>
+                <Outlet />
+            </div>
+        </main>
+    );
+};

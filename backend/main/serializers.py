@@ -135,3 +135,10 @@ class OrganizationSerializer(serializers.ModelSerializer):
         model = Organization
         fields = ['id', 'short_name', 'full_name', 'inn', 'kpp', 'ogrn', 'phone']
         read_only_fields = ['user']
+
+
+class MeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MyUser
+        fields = '__all__'
+

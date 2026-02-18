@@ -149,3 +149,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 
 ]
+
+
+DJOSER = {
+    'SERIALIZERS':  {
+        'current_user': 'main.serializers.MeSerializer',
+        },
+}
+

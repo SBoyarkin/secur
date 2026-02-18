@@ -1,4 +1,16 @@
-.flexAlign {
-    display: flex;
+/* MainPage.module.css */
 
+.horizontalFlex {
+    display: flex;
+    width: 100vw;
+
+}
+
+/* ЭТОТ КЛАСС БУДЕТ РАСТЯГИВАТЬСЯ НА ВСЮ ШИРИНУ */
+.verticalFlex {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* ЭТО ВАЖНО - занимает всё свободное место по ширине */
+    width: 100%; /* Можно добавить для надежности */
+    max-width: 100%; /* Чтобы не вылезало за пределы */
 }

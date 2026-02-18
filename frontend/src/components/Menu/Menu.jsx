@@ -1,5 +1,6 @@
 import S from './Menu.module.css'
-import {MenuItem} from "./MenuItem.jsx";
+import { MenuItem } from "./MenuItem.jsx";
+
 export const Menu = () => {
     const menu = [
         {
@@ -19,16 +20,30 @@ export const Menu = () => {
         },
         {
             id: 4,
-            title: 'Добавить серт',
+            title: 'Добавить сертификат',
             to: 'cert'
         },
-    ]
-    return(
-        <>
-            <div className={S.menuConten}>
-                {menu.map(item => <MenuItem  item={item}/>)}
-            </div>
-        </>
-    )
+    ];
 
-}
+    return (
+        <div className={S.menuContent}>
+            {/* Логотип/заголовок меню */}
+            <div className={S.menuHeader}>
+                <div className={S.logo}>⎔</div>
+                <div className={S.logoText}>SECURE<span>PORTAL</span></div>
+            </div>
+
+            {/* Навигация */}
+            <nav className={S.nav}>
+                {menu.map(item => (
+                    <MenuItem key={item.id} item={item} />
+                ))}
+            </nav>
+
+            {/* Нижняя часть меню (дополнительно) */}
+            <div className={S.menuFooter}>
+                <div className={S.version}>v2.4.0</div>
+            </div>
+        </div>
+    );
+};

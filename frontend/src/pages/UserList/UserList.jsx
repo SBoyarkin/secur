@@ -16,7 +16,6 @@ export const UserList = () => {
             <div>
                 {users.map(item => <UserListItem props={item}/> )}
             </div>
-
         </>
     )
 

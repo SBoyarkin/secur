@@ -1,0 +1,265 @@
+/* Header.module.css */
+
+.header {
+    background-color: #2A2F35; /* Антрацитовый графит */
+    border-bottom: 1px solid #3A3F45;
+    height: 70px;
+    width: 100%;
+    top: 0;
+    left: 260px; /* Ширина бокового меню */
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #FFFFFF;
+    z-index: 900;
+    box-sizing: border-box;
+}
+
+/* Левая часть хедера */
+.headerLeft {
+    display: flex;
+    align-items: center;
+}
+
+
+.systemIcon {
+    color: #2A9D8F;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.systemName {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.systemStatus {
+    color: #2A9D8F;
+    font-size: 12px;
+    animation: none; /* Без анимации */
+}
+
+/* Правая часть хедера */
+.headerRight {
+    display: flex;
+    align-items: center;
+}
+
+/* Блок с пользователем */
+.userInfo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+}
+
+/* Детали пользователя */
+.userDetails {
+    text-align: right;
+}
+
+.userName {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.userRole {
+    color: #B0B0B0;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Аватар пользователя */
+.userAvatar {
+    width: 42px;
+    height: 42px;
+    background-color: #1A2B3D;
+    border: 2px solid #3A3F45;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: none;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.userAvatar:hover {
+    border-color: #2A9D8F;
+}
+
+.userAvatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Выпадающее меню */
+.userDropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    width: 300px;
+    background-color: #2A2F35;
+    border: 1px solid #3A3F45;
+    border-radius: 6px;
+    box-shadow: none; /* Без тени */
+    z-index: 1001;
+}
+
+/* Заголовок дропдауна */
+.dropdownHeader {
+    padding: 20px;
+    border-bottom: 1px solid #3A3F45;
+}
+
+.dropdownUserInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dropdownUserName {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.dropdownUserEmail {
+    color: #2A9D8F;
+    font-size: 13px;
+    font-family: monospace;
+}
+
+.dropdownUserDepartment {
+    color: #B0B0B0;
+    font-size: 12px;
+    margin-top: 4px;
+    padding-top: 4px;
+    border-top: 1px dashed #3A3F45;
+}
+
+/* Меню дропдауна */
+.dropdownMenu {
+    padding: 8px 0;
+}
+
+.dropdownItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: none;
+}
+
+.dropdownItem:hover {
+    background-color: #1A2B3D;
+}
+
+.dropdownIcon {
+    color: #2A9D8F;
+    font-size: 16px;
+    width: 20px;
+}
+
+/* Разделитель */
+.dropdownDivider {
+    height: 1px;
+    background-color: #3A3F45;
+    margin: 0;
+}
+
+/* Футер дропдауна */
+.dropdownFooter {
+    padding: 16px 20px;
+}
+
+.lastLogin {
+    color: #B0B0B0;
+    font-size: 11px;
+    font-family: monospace;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #3A3F45;
+}
+
+/* Кнопка выхода */
+.logoutButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid #3A3F45;
+    border-radius: 4px;
+    color: #E76F51; /* Цвет опасности */
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: none;
+}
+
+.logoutButton:hover {
+    background-color: #E76F51;
+    border-color: #E76F51;
+    color: #FFFFFF;
+}
+
+.logoutIcon {
+    font-size: 16px;
+}
+
+.logoutButton:hover .logoutIcon {
+    color: #FFFFFF;
+}
+
+/* Оверлей для закрытия дропдауна */
+.dropdownOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1000;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header {
+        left: 0;
+        padding: 0 16px;
+    }
+
+    .userDetails {
+        display: none;
+    }
+
+    .systemName {
+        display: none;
+    }
+
+    .userDropdown {
+        width: 280px;
+        right: -10px;
+    }
+}

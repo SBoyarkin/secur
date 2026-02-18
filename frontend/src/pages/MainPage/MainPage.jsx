@@ -1,18 +1,18 @@
-import {useSelector, useDispatch} from "react-redux";
-import { decrement, increment } from '../../features/counterSlice.js'
 import S from './MainPage.module.css'
 import {Menu} from "../../components/Menu/Menu.jsx";
 import {Content} from "../Content/Content.jsx";
-import {Me} from "../../components/Me/Me.jsx";
+import {Header} from "../../components/Header/Header.jsx";
 export const MainPage = () => {
     return(
         <>
-            <main className={S.flexAlign}>
-                <Menu />
+            <div className={S.horizontalFlex}>
+                <Menu/>
+            <div className={S.verticalFlex}>
+                <Header/>
                 <Content/>
-                <Me/>
-            </main>
+            </div>
 
+            </div>
         </>
     )
 

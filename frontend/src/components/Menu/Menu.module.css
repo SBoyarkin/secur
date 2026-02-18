@@ -1,7 +1,105 @@
-.menuConten {
-    display: block;
+/* Menu.module.css */
+
+.menuContent {
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
-    background-color: #535bf2;
-    width: 15vw;
+    background-color: #2A2F35; /* Антрацитовый графит */
+    width: 260px; /* Фиксированная ширина вместо 15vw для консистентности */
     height: 100vh;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #3A3F45;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #FFFFFF;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+
+/* Шапка меню с логотипом */
+.menuHeader {
+    padding: 24px 20px;
+    border-bottom: 1px solid #3A3F45;
+    margin-bottom: 20px;
+}
+
+.logo {
+    color: #2A9D8F; /* Изумрудный */
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.logoText {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.logoText span {
+    color: #2A9D8F; /* Изумрудный */
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+/* Навигация */
+.nav {
+    flex: 1;
+    padding: 0 12px;
+}
+
+/* Пункт меню (MenuItem) — эти стили можно перенести в MenuItem.module.css */
+.navItem {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 4px;
+    color: #B0B0B0;
+    text-decoration: none;
+    border-radius: 4px;
+    border-left: 3px solid transparent;
+    transition: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Иконка пункта меню (если добавим) */
+.navItemIcon {
+    margin-right: 12px;
+    color: #2A9D8F;
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+/* Активный пункт меню */
+.navItemActive {
+    background-color: #1A2B3D; /* Глубокий индиго */
+    color: #FFFFFF;
+    border-left-color: #2A9D8F; /* Изумрудная полоска слева */
+}
+
+/* Hover эффект */
+.navItem:hover {
+    background-color: #1A2B3D;
+    color: #FFFFFF;
+    border-left-color: #2A9D8F;
+}
+
+/* Футер меню */
+.menuFooter {
+    padding: 20px;
+    border-top: 1px solid #3A3F45;
+    margin-top: 20px;
+}
+
+.version {
+    color: #5A5F65;
+    font-size: 12px;
+    font-family: monospace;
+    text-align: center;
 }
