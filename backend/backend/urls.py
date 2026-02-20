@@ -20,14 +20,26 @@ from rest_framework import routers
 
 from main.views import OrganizationViewSet, CertificateViewSet, UserViewSet, PreviewViewSet, TestView
 
+from main.views import MyCertificateAPIView
+
+from documents.views import DocumentViewSet
+
 router = routers.DefaultRouter()
 router.register('service/available/organizations', OrganizationViewSet)
 router.register('certificates', CertificateViewSet)
 router.register('users', UserViewSet)
 
 
+router.register('documents', DocumentViewSet)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('personal/certificate/', MyCertificateAPIView.as_view()),
+
+
+
     path('preview/', PreviewViewSet.as_view(), name='preview'),
     path(r'api-v1/auth/', include('djoser.urls')),
     path(r'api-v1/auth/', include('djoser.urls.authtoken')),

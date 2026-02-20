@@ -1,0 +1,254 @@
+/* CertificateItem.module.css */
+
+.certificateItem {
+    user-select: none;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 24px;
+    background-color: #2A2F35; /* Антрацитовый графит */
+    border: 1px solid #3A3F45;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 12px;
+    transition: none; /* Без анимации */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    position: relative;
+}
+
+/* Hover эффект */
+.certificateItem:hover {
+    background-color: #1A2B3D; /* Глубокий индиго */
+    border-color: #2A9D8F; /* Изумрудная граница */
+}
+
+/* Левая часть с иконкой и основной информацией */
+.certificateMain {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    min-width: 0; /* Для правильного сокращения текста */
+}
+
+/* Иконка сертификата */
+.certificateIcon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1A2B3D;
+    border: 1px solid #3A3F45;
+    border-radius: 4px;
+    color: #2A9D8F; /* Изумрудный */
+}
+
+.certificateIcon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Блок с информацией */
+.certificateInfo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Строки информации */
+.certificateName,
+.certificateOrg,
+.certificateEmail {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Метки (CN, O, Email) */
+.label {
+    color: #B0B0B0;
+    font-weight: 500;
+    min-width: 45px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Значения */
+.value {
+    color: #FFFFFF;
+    font-weight: 400;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Email делаем изумрудным */
+.certificateEmail .value {
+    color: #2A9D8F;
+    font-family: monospace;
+}
+
+/* Блок с датами */
+.certificateDates {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 16px;
+    border-left: 1px solid #3A3F45;
+    border-right: 1px solid #3A3F45;
+    min-width: 240px;
+}
+
+.dateItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+}
+
+.dateLabel {
+    color: #B0B0B0;
+    min-width: 65px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dateValue {
+    color: #FFFFFF;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+/* Статусы дат */
+.dateValue.valid {
+    color: #2A9D8F; /* Изумрудный */
+}
+
+.dateValue.expiringSoon {
+    color: #E9C46A; /* Желтый для предупреждения */
+    position: relative;
+}
+
+.dateValue.expired {
+    color: #E76F51; /* Красный для просрочки */
+    text-decoration: line-through;
+}
+
+/* Блок статуса */
+.certificateStatus {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 140px;
+}
+
+/* Бейдж статуса */
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+
+/* Статус "Действителен" */
+.statusValid {
+    background-color: rgba(42, 157, 143, 0.1);
+    color: #2A9D8F;
+    border-color: #2A9D8F;
+}
+
+/* Статус "Скоро истекает" */
+.statusWarning {
+    background-color: rgba(233, 196, 106, 0.1);
+    color: #E9C46A;
+    border-color: #E9C46A;
+}
+
+/* Статус "Просрочен" */
+.statusExpired {
+    background-color: rgba(231, 111, 81, 0.1);
+    color: #E76F51;
+    border-color: #E76F51;
+}
+
+/* Компактная версия для мобильных */
+@media (max-width: 768px) {
+    .certificateItem {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    .certificateMain {
+        gap: 12px;
+    }
+
+    .certificateIcon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .certificateIcon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .certificateDates {
+        padding: 16px 0;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid #3A3F45;
+        border-bottom: 1px solid #3A3F45;
+        min-width: auto;
+    }
+
+    .certificateStatus {
+        justify-content: flex-start;
+    }
+
+    .statusBadge {
+        width: 100%;
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+    .certificateName,
+    .certificateOrg,
+    .certificateEmail {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .label {
+        min-width: auto;
+    }
+
+    .value {
+        white-space: normal;
+    }
+
+    .dateItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .dateLabel {
+        min-width: auto;
+    }
+}

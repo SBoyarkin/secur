@@ -1,6 +1,5 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
-
 # Create your models here.
 
 
@@ -27,7 +26,7 @@ class MyUser(AbstractUser):
     middle_name = models.CharField(max_length=30)
     organization = models.ManyToManyField(Organization, related_name='user', blank=True)
     мanages = models.ManyToManyField(Organization, related_name='administrator', blank=True, through='AdminRule')
-
+    groups = models.ManyToManyField(Group, related_name='user_set', blank=True)
 
 class AdminRule(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
@@ -50,3 +49,8 @@ class Certificate(models.Model):
     byte_certificate = models.BinaryField(default=None, null=True, blank=True)
     not_valid_after = models.DateTimeField()
     not_valid_before = models.DateTimeField()
+
+
+
+
+

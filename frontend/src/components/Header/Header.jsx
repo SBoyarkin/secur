@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router";
 import styles from './Header.module.css';
 import {authAxiosRequest} from "../../castomAxiosRequest.js";
@@ -7,24 +7,23 @@ import {setUser} from "../../features/userSlice.js";
 
 
 // Моковые данные пользователя
-const MOCK_USER = {
-    id: 1,
-    first_name: 'Алексей',
-    last_name: 'Петров',
-    username: 'alex.petrov',
-    email: 'a.petrov@securecorp.ru',
-    role: 'Администратор безопасности',
-    avatar: null, // Можно добавить URL аватара
-    last_login: '2024-02-18T10:30:00',
-    department: 'Отдел информационной безопасности'
-};
+// const MOCK_USER = {
+//     id: 1,
+//     first_name: 'Алексей',
+//     last_name: 'Петров',
+//     username: 'alex.petrov',
+//     email: 'a.petrov@securecorp.ru',
+//     role: 'Администратор безопасности',
+//     avatar: null, // Можно добавить URL аватара
+//     last_login: '2024-02-18T10:30:00',
+//     department: 'Отдел информационной безопасности'
+// };
 
 export const Header = () => {
-    const selector =
+    const selector = useSelector((store) => store.user.user)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-    const [user] = useState(MOCK_USER); // В реальном проекте данные приходят из Redux/контекста
 
     useEffect(() => {
         authAxiosRequest.get('api-v1/auth/users/me/')
@@ -67,16 +66,15 @@ export const Header = () => {
 
     // Получение инициалов пользователя
     const getUserInitials = () => {
-        if (user.first_name && user.last_name) {
-            return `${user.first_name[0]}${user.last_name[0]}`.toUpperCase();
+        if (selector.first_name && selector.last_name) {
+            return `${selector.first_name[0]}${selector.last_name[0]}`.toUpperCase();
         }
-        return user.username.slice(0, 2).toUpperCase();
     };
 
     return (
         <header className={styles.header}>
             <div className={styles.headerLeft}>
-                ДОП КНОПК
+                МЕНЮ
             </div>
 
             <div className={styles.headerRight}>
@@ -84,9 +82,10 @@ export const Header = () => {
                 <div className={styles.userInfo}>
                     <div className={styles.userDetails}>
                         <div className={styles.userName}>
-                            {user.last_name} {user.first_name}
+                            {selector.last_name} {selector.first_name}
+
                         </div>
-                        <div className={styles.userRole}>{user.role}</div>
+                        <div className={styles.userRole}>{selector.role}</div>
                     </div>
 
                     {/* Аватар/Инициалы пользователя */}
@@ -94,8 +93,8 @@ export const Header = () => {
                         className={styles.userAvatar}
                         onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                     >
-                        {user.avatar ? (
-                            <img src={user.avatar} alt={`${user.first_name} ${user.last_name}`} />
+                        {selector.avatar ? (
+                            <img src={selector.avatar} alt={`${selector.first_name} ${selector.last_name}`} />
                         ) : (
                             <span>{getUserInitials()}</span>
                         )}
@@ -107,13 +106,13 @@ export const Header = () => {
                             <div className={styles.dropdownHeader}>
                                 <div className={styles.dropdownUserInfo}>
                                     <div className={styles.dropdownUserName}>
-                                        {user.last_name} {user.first_name}
+                                        {selector.last_name} {selector.first_name}
                                     </div>
                                     <div className={styles.dropdownUserEmail}>
-                                        {user.email}
+                                        {selector.email}
                                     </div>
                                     <div className={styles.dropdownUserDepartment}>
-                                        {user.department}
+                                        {selector.department}
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +138,7 @@ export const Header = () => {
 
                             <div className={styles.dropdownFooter}>
                                 <div className={styles.lastLogin}>
-                                    Последний вход: {formatLastLogin(user.last_login)}
+                                    Последний вход: {formatLastLogin(selector.last_login)}
                                 </div>
                                 <button
                                     className={styles.logoutButton}

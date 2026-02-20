@@ -1,0 +1,5 @@
+### GET запрос с заголовками
+GET http://127.0.0.1:8000/personal/certificate
+Accept: application/json
+Authorization: Token e259346ee3bf8bd59fd5609734c1c79edea59c90
+User-Agent: PyCharm-HTTP-Client

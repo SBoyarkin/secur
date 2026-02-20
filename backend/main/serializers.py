@@ -28,13 +28,12 @@ def get_username(given_name, sur_name):
 
 
 class CertificateSerializer(serializers.ModelSerializer):
-    links = serializers.SerializerMethodField()
     class Meta:
         model = Certificate
         fields = ['id', 'cn', 'o', 'email', 'snils', 'owner', 'ogrn', 'serial_number', 'certificate',
-                  'not_valid_after', 'not_valid_before', 'links']
+                  'not_valid_after', 'not_valid_before',]
         read_only_fields = ['serial_number', 'cn', 'o', 'email', 'snils', 'inn', 'ogrn',
-                            'owner', 'not_valid_after', 'not_valid_before', 'links']
+                            'owner', 'not_valid_after', 'not_valid_before',]
 
     def create(self, validated_data):
         cert = validated_data.get('certificate')
@@ -94,18 +93,6 @@ class CertificateSerializer(serializers.ModelSerializer):
                 raise NotFound('Organization not found')
         return super().create(validated_data)
 
-    def get_links(self, obj):
-        request = self.context.get('request')
-        model = self.Meta.model.__name__.lower()
-        detail = {'url': reverse(f'{model}-detail', request=request, kwargs={'pk': obj.pk}), 'method': 'GET'}
-        delete = {'url': reverse(f'{model}-detail', request=request, kwargs={'pk': obj.pk}), 'method': 'DELETE'}
-        update = {'url': reverse(f'{model}-detail', request=request, kwargs={'pk': obj.pk}), 'method': 'PUT'}
-        return {
-
-            'retrieve': detail,
-            'destroy': delete,
-            'update': update,
-        }
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -136,9 +123,9 @@ class OrganizationSerializer(serializers.ModelSerializer):
         fields = ['id', 'short_name', 'full_name', 'inn', 'kpp', 'ogrn', 'phone']
         read_only_fields = ['user']
 
-
+# _______________________________________________________________________________________________--
 class MeSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
-        fields = '__all__'
+        fields = ['first_name', 'last_name', 'email', 'last_login',]
 

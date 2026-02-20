@@ -8,6 +8,8 @@ from main.models import Organization, Certificate, MyUser
 from main.permissions import AdminPermission
 from main.serializers import OrganizationSerializer, CertificateSerializer, UserSerializer
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 
 # Create your views here.
 
@@ -34,6 +36,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
 
 
 class CertificateViewSet(viewsets.ModelViewSet):
+
     queryset = Certificate.objects.all()
     serializer_class = CertificateSerializer
 
@@ -66,3 +69,18 @@ class TestView(generics.ListAPIView):
         return Response(serializer.data)
 
 
+class MyCertificateAPIView(generics.ListAPIView):
+    """
+    View для получения сертификатов текущего пользователя.
+    """
+    serializer_class = CertificateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        """
+        Фильтруем queryset по текущему пользователю.
+        """
+        user = self.request.user
+        return Certificate.objects.filter(owner=user)
+
+    # Если нужно кастомизировать ответ, можно переопределить list:

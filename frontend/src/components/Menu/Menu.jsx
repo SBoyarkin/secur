@@ -16,12 +16,12 @@ export const Menu = () => {
         {
             id: 3,
             title: 'Документы',
-            to: 'doc'
+            to: 'documents'
         },
         {
             id: 4,
-            title: 'Добавить сертификат',
-            to: 'cert'
+            title: 'Сертификаты',
+            to: 'certificates'
         },
     ];
 
