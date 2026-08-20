@@ -4,9 +4,9 @@ from django.shortcuts import render
 from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.exceptions import NotAuthenticated
-from main.models import Organization, Certificate, MyUser
+from main.models import Organization, Certificate, MyUser, UserOrganization
 from main.permissions import AdminPermission
-from main.serializers import OrganizationSerializer, CertificateSerializer, UserSerializer
+from main.serializers import OrganizationSerializer, CertificateSerializer, UserSerializer, UserOrganizationSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -52,22 +52,6 @@ class PreviewViewSet(generics.ListAPIView):
         return Response(queryset)
 
 
-class TestView(generics.ListAPIView):
-    queryset = MyUser.objects.all()
-    serializer_class = UserSerializer
-    def list(self, request, *args, **kwargs):
-        print(kwargs)
-        queryset = self.queryset.filter(organization=kwargs['id'])
-        print(queryset)
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-
 class MyCertificateAPIView(generics.ListAPIView):
     """
     View для получения сертификатов текущего пользователя.
@@ -83,3 +67,7 @@ class MyCertificateAPIView(generics.ListAPIView):
         return Certificate.objects.filter(owner=user)
 
     # Если нужно кастомизировать ответ, можно переопределить list:
+
+class UserOrganizationViewSet(viewsets.ModelViewSet):
+    queryset = UserOrganization.objects.all()
+    serializer_class = UserOrganizationSerializer

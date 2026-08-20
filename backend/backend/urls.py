@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from main.views import OrganizationViewSet, CertificateViewSet, UserViewSet, PreviewViewSet, TestView
+from main.views import OrganizationViewSet, CertificateViewSet, UserViewSet, PreviewViewSet, UserOrganizationViewSet
 
 from main.views import MyCertificateAPIView
 
@@ -28,6 +28,7 @@ router = routers.DefaultRouter()
 router.register('service/available/organizations', OrganizationViewSet)
 router.register('certificates', CertificateViewSet)
 router.register('users', UserViewSet)
+router.register('users01', UserOrganizationViewSet)
 
 
 router.register('documents', DocumentViewSet)
@@ -43,5 +44,4 @@ urlpatterns = [
     path('preview/', PreviewViewSet.as_view(), name='preview'),
     path(r'api-v1/auth/', include('djoser.urls')),
     path(r'api-v1/auth/', include('djoser.urls.authtoken')),
-    path('test/<int:id>/', TestView.as_view(), name='test'),
 ] + router.urls

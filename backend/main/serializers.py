@@ -6,7 +6,7 @@ from main.models import MyUser
 from rest_framework import serializers, status
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
-from main.models import Organization, Certificate
+from main.models import Organization, Certificate, UserOrganization
 
 
 def get_username(given_name, sur_name):
@@ -94,30 +94,15 @@ class CertificateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-
 class UserSerializer(serializers.ModelSerializer):
     certificates = CertificateSerializer(many=True, read_only=True)
-    links = serializers.SerializerMethodField()
     class Meta:
         model = MyUser
-        fields = ['id', 'username', 'email', 'snils', 'first_name', 'last_name', 'middle_name', 'certificates', 'links']
+        # fields = ['id', 'username', 'email', 'snils', 'first_name', 'last_name', 'middle_name', 'certificates',]
+        fields = '__all__'
 
-    def get_links(self, obj):
-        request = self.context.get('request')
-        model = self.Meta.model.__name__.lower()
-        detail = {'url': reverse(f'{model}-detail', request=request, kwargs={'pk': obj.pk}), 'method': 'GET'}
-        delete = {'url': reverse(f'{model}-detail', request=request, kwargs={'pk': obj.pk}), 'method': 'DELETE'}
-        update = {'url': reverse(f'{model}-detail', request=request, kwargs={'pk': obj.pk}), 'method': 'PUT'}
-        return {
-
-            'retrieve': detail,
-            'destroy': delete,
-            'update': update,
-        }
 
 class OrganizationSerializer(serializers.ModelSerializer):
-    # user = UserSerializer(read_only=True, many=True)
-
     class Meta:
         model = Organization
         fields = ['id', 'short_name', 'full_name', 'inn', 'kpp', 'ogrn', 'phone']
@@ -129,3 +114,7 @@ class MeSerializer(serializers.ModelSerializer):
         model = MyUser
         fields = ['first_name', 'last_name', 'email', 'last_login',]
 
+class UserOrganizationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserOrganization
+        fields = '__all__'
