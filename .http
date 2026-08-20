@@ -1,5 +1,13 @@
 ### GET запрос с заголовками
-GET http://127.0.0.1:8000/personal/certificate
+GET http://127.0.0.1:8000/service/available/organizations
 Accept: application/json
-Authorization: Token e259346ee3bf8bd59fd5609734c1c79edea59c90
+Authorization: Token f0035fd2244bd3f061219b335529acf6f15819f6
+User-Agent: PyCharm-HTTP-Client
+
+
+
+### GET запрос с заголовками
+GET http://127.0.0.1:8000/service/available/organizations
+Accept: application/json
+Authorization: Token c58a5d55a693366002ef8f4932560252be8b7226
 User-Agent: PyCharm-HTTP-Client

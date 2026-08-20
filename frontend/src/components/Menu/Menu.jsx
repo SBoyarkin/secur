@@ -5,24 +5,25 @@ export const Menu = () => {
     const menu = [
         {
             id: 1,
+            title: 'Мои сертификаты',
+            to: 'certificates'
+        },
+        {
+            id: 2,
             title: 'Сотрудники',
             to: 'users'
         },
         {
-            id: 2,
+            id: 3,
             title: 'Моя организация',
             to: 'my-corp'
         },
         {
-            id: 3,
+            id: 4,
             title: 'Документы',
             to: 'documents'
         },
-        {
-            id: 4,
-            title: 'Сертификаты',
-            to: 'certificates'
-        },
+
     ];
 
     return (

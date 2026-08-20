@@ -23,7 +23,7 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         if self.request.user.is_staff:
             return super().list(self, request, *args, **kwargs)
         else:
-            queryset = self.queryset.all().intersection(self.request.user.мanages.all())
+            queryset = self.queryset.all().intersection(self.request.user.manages.all())
             page = self.paginate_queryset(queryset)
             if page is not None:
                 serializer = self.get_serializer(page, many=True)
@@ -31,9 +31,6 @@ class OrganizationViewSet(viewsets.ModelViewSet):
 
             serializer = self.get_serializer(queryset, many=True)
             return Response(serializer.data)
-
-
-
 
 class CertificateViewSet(viewsets.ModelViewSet):
 

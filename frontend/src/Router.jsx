@@ -29,6 +29,10 @@ export const router = createBrowserRouter([
         path: 'documents',
         Component: Documents,
       },
+      {
+        path: 'my-corp',
+        Component: Documents,
+      },
 
     ],
 
