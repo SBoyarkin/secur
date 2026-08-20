@@ -7,6 +7,9 @@ class CustomAbstractModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        abstract = True
+
 
 class Organization(CustomAbstractModel):
     short_name = models.CharField(max_length=255)
@@ -19,19 +22,46 @@ class Organization(CustomAbstractModel):
     phone = models.CharField(max_length=15, null=True)
     director = models.CharField(max_length=255)
 
+    class Meta:
+        verbose_name = "Информация об организации"
+        verbose_name_plural = "Информация об организациях"
+
+    def __str__(self):
+        return self.short_name
 
 class MyUser(AbstractUser):
+    # Информация о пользователе
     is_admin = models.BooleanField(default=False)
     snils = models.CharField(max_length=20)
     middle_name = models.CharField(max_length=30)
-    organization = models.ManyToManyField(Organization, related_name='user', blank=True)
+    organization = models.ManyToManyField(Organization, related_name='user', blank=True, through='UserOrganization')
     мanages = models.ManyToManyField(Organization, related_name='administrator', blank=True, through='AdminRule')
     groups = models.ManyToManyField(Group, related_name='user_set', blank=True)
+
+    class Meta:
+        verbose_name = "Информация о пользователе"
+        verbose_name_plural = "Информация о пользователях"
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class AdminRule(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
     main = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Администрирование организации"
+        verbose_name_plural = "Администрирование организаций"
+
+class UserOrganization(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    position = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = "Должности пользователя"
 
 
 class Certificate(models.Model):
@@ -50,7 +80,9 @@ class Certificate(models.Model):
     not_valid_after = models.DateTimeField()
     not_valid_before = models.DateTimeField()
 
-
+    class Meta:
+        verbose_name = "Сертификат"
+        verbose_name_plural = "Сертификаты"
 
 
 

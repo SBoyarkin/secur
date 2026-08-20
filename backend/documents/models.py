@@ -12,6 +12,11 @@ class Documents(models.Model):
                                             related_name='allowed_documents',
                                             verbose_name="Доступные группы")
 
+    class Meta:
+        verbose_name = "Шаблон документа"
+        verbose_name_plural = "Шаблоны документов"
+
+
 
 
 
@@ -22,3 +27,4 @@ class DocumetsUsers(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     valid = models.BooleanField(default=False)
     file = models.FileField(upload_to='documents')
+

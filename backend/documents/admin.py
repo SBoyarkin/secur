@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Documents, DocumetsUsers
 
-# Register your models here.
+admin.site.register(Documents)
+admin.site.register(DocumetsUsers)
+
