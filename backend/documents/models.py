@@ -11,6 +11,10 @@ class Documents(models.Model):
     allowed_groups = models.ManyToManyField(Group, blank=True,
                                             related_name='allowed_documents',
                                             verbose_name="Доступные группы")
+    is_default = models.BooleanField(
+        default=False,
+        verbose_name="Доступен по умолчанию для всех"
+    )
 
     class Meta:
         verbose_name = "Шаблон документа"

@@ -42,8 +42,10 @@ class CertificateViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+
     queryset = MyUser.objects.all()
     serializer_class = UserSerializer
+
 
 class PreviewViewSet(generics.ListAPIView):
     queryset = Certificate.objects.all()

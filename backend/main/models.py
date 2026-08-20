@@ -29,13 +29,29 @@ class Organization(CustomAbstractModel):
     def __str__(self):
         return self.short_name
 
+    @property
+    def get_dict(self):
+        return (
+            {'short_name': self.short_name,
+             'short_name_dative': self.short_name_dative,
+             'short_name_genitive': self.short_name_genitive,
+             'full_name': self.full_name,
+             'inn': self.inn,
+             'kpp': self.kpp,
+             'ogrn': self.ogrn,
+             'phone': self.phone,
+             'director': self.director,
+             },
+        )
+
+
 class MyUser(AbstractUser):
     # Информация о пользователе
     is_admin = models.BooleanField(default=False)
     snils = models.CharField(max_length=20)
     middle_name = models.CharField(max_length=30)
     organization = models.ManyToManyField(Organization, related_name='user', blank=True, through='UserOrganization')
-    мanages = models.ManyToManyField(Organization, related_name='administrator', blank=True, through='AdminRule')
+    manages = models.ManyToManyField(Organization, related_name='administrator', blank=True, through='AdminRule')
     groups = models.ManyToManyField(Group, related_name='user_set', blank=True)
 
     class Meta:
